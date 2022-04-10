@@ -20,29 +20,21 @@ The following environment variables need to be set so your application connects 
 
 This image contains a script named `start-pubsub` (included in the PATH). This script is used to initialize the Pub/Sub emulator.
 
-### Starting an emulator
+### Build For Apple Silicon
 
-By default, the following command is called:
-
-```sh
-start-pubsub
+```shell
+docker build --platform linux/arm64 -t pubsub:latest ./
 ```
 
-## Creating a Pub/Sub emulator with Docker Compose
+### Build For Intel
 
-The easiest way to create an emulator with this image is by using [Docker Compose](https://docs.docker.com/compose). The following snippet can be used as a `docker-compose.yml` for a Pub/Sub emulator:
+```shell
+docker build -t pubsub:latest ./
+```
 
-```YAML
-version: "2"
-
-services:
-  pubsub:
-    image: singularities/pubsub-emulator
-    environment:
-      - PUBSUB_PROJECT_ID=project-test
-      - PUBSUB_LISTEN_ADDRESS=0.0.0.0:8432
-    ports:
-      - "8432:8432"
+### Starting an emulator
+```
+docker run -it -e PUBSUB_PROJECT_ID=local-pubsub -e PUBSUB_LISTEN_ADDRESS=0.0.0.0:8432 -p 8432:8432 pubsub:latest
 ```
 
 ### Persistence

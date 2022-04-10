@@ -1,0 +1,6 @@
+{
+  "type": "authorized_user",
+  "client_id": "local",
+  "client_secret": "local",
+  "refresh_token": "local"
+}
