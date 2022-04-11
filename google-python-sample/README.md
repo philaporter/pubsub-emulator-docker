@@ -1,5 +1,6 @@
 ## Sampled Code with slight revisions / explanations
 See this for emulator details: https://cloud.google.com/pubsub/docs/emulator
+
 Sample code source repo: https://github.com/googleapis/python-pubsub/tree/main/samples/snippets
 
 ### Requirements
@@ -13,17 +14,19 @@ pip 3
 
 ### Getting started
 ```
-cd google-python-sample
 pip install -r requirements.txt
 export PUBSUB_EMULATOR_HOST=localhost:8432
 export GOOGLE_APPLICATION_CREDENTIALS=fake-keyfile.json
 ```
 
 ### Using the Google sample to interact with the emulator
-
 ```
-# local-pubsub is the project id
-# test-topic is the topic
-python google-python-sample/publisher.py local-pubsub create test-topic
-python google-python-sample/publisher.py local-pubsub list
+# create the topic "test-topic" under the project "local-pubsub"
+python publisher.py local-pubsub create test-topic
+
+# list the topics under the project "local-pubsub"
+python publisher.py local-pubsub list
+
+# create a pull subscriber "test-topic-sub"
+python subscriber.py local-pubsub create test-topic test-topic-sub
 ```
